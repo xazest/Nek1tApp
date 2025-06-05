@@ -1,0 +1,48 @@
+﻿<Window x:Class="WpfApp2_Nikita.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2_Nikita"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="633" Width="784" Style="{StaticResource BasedTextStyle}" Closing="Window_Closing">
+    <Grid PreviewMouseDown="dataGrid_PreviewMouseDown" Background="Transparent">
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding Rows}" AutoGenerateColumns="False" CanUserAddRows="True" PreviewTextInput="DataGrid_PreviewTextInput" CellEditEnding="DataGrid_CellEditEnding" CanUserReorderColumns="False" CanUserSortColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="450" HorizontalAlignment="Left" MinColumnWidth="130" MaxColumnWidth="130" Width="392" SelectionMode="Single" SelectionUnit="Cell">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="USD" Binding="{Binding Number1, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="10" />
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Процент" Binding="{Binding Number2, UpdateSourceTrigger=Explicit}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="10" />
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="USDT" Binding="{Binding Result}" IsReadOnly="True" >
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="10" />
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <Button x:Name="ButtonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="529,10,0,0" VerticalAlignment="Top" Click="SaveButton"/>
+        <Calendar x:Name="Calendar" Margin="431,48,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Calendar.SelectedDatesChanged="Calendar_SelectedDatesChanged" Focusable="False">
+            <Calendar.LayoutTransform>
+                <ScaleTransform ScaleX="1.75" ScaleY="1.75"/>
+            </Calendar.LayoutTransform>
+        </Calendar>
+        <TextBlock HorizontalAlignment="Left" Margin="431,348,0,0" TextWrapping="Wrap" Text="Сумма процентов" VerticalAlignment="Top" FontSize="13"/>
+        <TextBlock HorizontalAlignment="Left" Margin="594,348,0,0" TextWrapping="Wrap" Text="Сумма USDT" VerticalAlignment="Top" FontSize="13"/>
+        <TextBox x:Name="Number2Sum" HorizontalAlignment="Left" Margin="431,363,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" IsReadOnly="True" FontWeight="SemiBold" />
+        <TextBox x:Name="ResultSum" HorizontalAlignment="Left" Margin="593,363,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" IsReadOnly="True" FontWeight="SemiBold"/>
+    </Grid>
+</Window>
