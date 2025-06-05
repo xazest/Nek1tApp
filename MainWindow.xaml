@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2_Nikita"
         mc:Ignorable="d"
-        Title="MainWindow" Height="633" Width="784" Style="{StaticResource BasedTextStyle}" Closing="Window_Closing">
+        Title="Nek1tApp" Height="633" Width="784" Style="{StaticResource BasedTextStyle}" Closing="Window_Closing">
     <Grid PreviewMouseDown="dataGrid_PreviewMouseDown" Background="Transparent">
         <DataGrid x:Name="dataGrid" ItemsSource="{Binding Rows}" AutoGenerateColumns="False" CanUserAddRows="True" PreviewTextInput="DataGrid_PreviewTextInput" CellEditEnding="DataGrid_CellEditEnding" CanUserReorderColumns="False" CanUserSortColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="450" HorizontalAlignment="Left" MinColumnWidth="130" MaxColumnWidth="130" Width="392" SelectionMode="Single" SelectionUnit="Cell">
             <DataGrid.Columns>
