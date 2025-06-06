@@ -35,14 +35,14 @@ namespace WpfApp2_Nikita
         }
         private void DataGrid_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (e.Text == ",")
+            if (e.Text == ".")
             {
                 e.Handled = true;
                 var textBox = Keyboard.FocusedElement as TextBox;
                 if (textBox != null)
                 {
                     int caret = textBox.CaretIndex;
-                    textBox.Text = textBox.Text.Insert(caret, ".");
+                    textBox.Text = textBox.Text.Insert(caret, ",");
                     textBox.CaretIndex = caret + 1;
                 }
 
