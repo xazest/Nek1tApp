@@ -5,9 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2_Nikita"
         mc:Ignorable="d"
-        Title="Nek1tApp" Height="633" Width="784" Style="{StaticResource BasedTextStyle}" Closing="Window_Closing">
-    <Grid PreviewMouseDown="dataGrid_PreviewMouseDown" Background="Transparent">
-        <DataGrid x:Name="dataGrid" ItemsSource="{Binding Rows}" AutoGenerateColumns="False" CanUserAddRows="True" PreviewTextInput="DataGrid_PreviewTextInput" CellEditEnding="DataGrid_CellEditEnding" CanUserReorderColumns="False" CanUserSortColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="450" HorizontalAlignment="Left" MinColumnWidth="130" MaxColumnWidth="130" Width="392" SelectionMode="Single" SelectionUnit="Cell">
+        Title="Nek1tApp" Height="649" Width="1186" Style="{StaticResource BasedTextStyle}" Closing="Window_Closing">
+    <Grid  Background="Transparent">
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding Rows}" PreviewMouseDown="dataGrid_PreviewMouseDown" AutoGenerateColumns="False" CanUserAddRows="True" PreviewTextInput="DataGrid_PreviewTextInput" CanUserReorderColumns="False" CanUserSortColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="450" HorizontalAlignment="Left" MinColumnWidth="130" MaxColumnWidth="130" Width="392" SelectionMode="Single" SelectionUnit="Cell" Margin="0,20,0,0"
+                   HeadersVisibility="Column"
+                   Background="#7F90EE90"
+                   RowBackground="#7F90EE90"
+                   Foreground="Black">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#7F02B302"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                    <Setter Property="FontWeight" Value="DemiBold"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+
             <DataGrid.Columns>
                 <DataGridTextColumn Header="USD" Binding="{Binding Number1, UpdateSourceTrigger=PropertyChanged}">
                     <DataGridTextColumn.EditingElementStyle>
@@ -19,6 +34,7 @@
                 <DataGridTextColumn Header="Процент" Binding="{Binding Number2, UpdateSourceTrigger=Explicit}">
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">
+                            <EventSetter Event="LostFocus" Handler="TextBox_LostFocus"/>
                             <Setter Property="MaxLength" Value="10" />
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
@@ -32,17 +48,59 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-
-
+        <DataGrid x:Name="dataGridSell" ItemsSource="{Binding RowsSell}" PreviewMouseDown="dataGrid_PreviewMouseDown" AutoGenerateColumns="False" CanUserAddRows="True" PreviewTextInput="DataGrid_PreviewTextInput" CanUserReorderColumns="False" CanUserSortColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="450" HorizontalAlignment="Left" MinColumnWidth="130" MaxColumnWidth="130" Width="392" SelectionMode="Single" SelectionUnit="Cell" Margin="780,20,0,0"
+                 HeadersVisibility="Column"
+                  Background="#7FEE9090"
+                   RowBackground="#7FEE9090"
+                   Foreground="Black">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#7FB30202"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="FontWeight" Value="DemiBold"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="USDT" Binding="{Binding Number1, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="MaxLength" Value="10" />
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Процент" Binding="{Binding Number2, UpdateSourceTrigger=Explicit}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="{x:Type TextBox}">
+                            <EventSetter Event="LostFocus" Handler="TextBox_LostFocus"/>
+                            <Setter Property="MaxLength" Value="10" />
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="USD" Binding="{Binding Result}" IsReadOnly="True" >
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="MaxLength" Value="10" />
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button x:Name="ButtonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="529,10,0,0" VerticalAlignment="Top" Click="SaveButton"/>
-        <Calendar x:Name="Calendar" Margin="431,48,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Calendar.SelectedDatesChanged="Calendar_SelectedDatesChanged" Focusable="False">
+        <Calendar x:Name="Calendar" Margin="430,48,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Calendar.SelectedDatesChanged="Calendar_SelectedDatesChanged" Focusable="False">
             <Calendar.LayoutTransform>
                 <ScaleTransform ScaleX="1.75" ScaleY="1.75"/>
             </Calendar.LayoutTransform>
         </Calendar>
-        <TextBlock HorizontalAlignment="Left" Margin="431,348,0,0" TextWrapping="Wrap" Text="Сумма процентов" VerticalAlignment="Top" FontSize="13"/>
-        <TextBlock HorizontalAlignment="Left" Margin="594,348,0,0" TextWrapping="Wrap" Text="Сумма USDT" VerticalAlignment="Top" FontSize="13"/>
-        <TextBox x:Name="Number2Sum" HorizontalAlignment="Left" Margin="431,363,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" IsReadOnly="True" FontWeight="SemiBold" />
-        <TextBox x:Name="ResultSum" HorizontalAlignment="Left" Margin="593,363,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" IsReadOnly="True" FontWeight="SemiBold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="430,348,0,0" TextWrapping="Wrap" Text="Сумма процентов" VerticalAlignment="Top" FontSize="13"/>
+        <TextBlock HorizontalAlignment="Left" Margin="593,348,0,0" TextWrapping="Wrap" Text="Сумма USDT" VerticalAlignment="Top" FontSize="13"/>
+        <TextBox x:Name="Number2Sum" HorizontalAlignment="Left" Margin="430,363,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" IsReadOnly="True" FontWeight="SemiBold" />
+        <TextBox x:Name="ResultSum" HorizontalAlignment="Left" Margin="592,363,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" IsReadOnly="True" FontWeight="SemiBold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="149,-4,0,0" TextWrapping="Wrap" Text="Покупка" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="929,-4,0,0" TextWrapping="Wrap" Text="Продажа" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="563,414,0,0" TextWrapping="Wrap" Text="Прибыль" VerticalAlignment="Top" FontSize="13"/>
+        <TextBox HorizontalAlignment="Center" x:Name="Profit" Margin="0,429,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" FontWeight="SemiBold"/>
     </Grid>
 </Window>

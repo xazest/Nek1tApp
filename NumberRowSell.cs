@@ -3,7 +3,7 @@
 
 namespace WpfApp2_Nikita
 {
-    public class NumberRow : INotifyPropertyChanged
+    public class NumberRowSell : INotifyPropertyChanged
     {
         private double _number1;
         private double _percent;
@@ -25,25 +25,32 @@ namespace WpfApp2_Nikita
         }
 
         public double Percent
-    {
-        get => _percent;
-        set
         {
-                _percent = value;
-                UpdateNumber2();
-                OnPropertyChanged(nameof(Percent));
-                OnPropertyChanged(nameof(Result));
+            get => _percent;
+            set
+            {
+                if (_percent != value)
+                {
+                    _percent = value;
+                    UpdateNumber2();
+                    OnPropertyChanged(nameof(Percent));
+                    OnPropertyChanged(nameof(Result));
+                }
+            }
         }
-    }
 
         public double Number2
         {
             get => _number2;
             set
             {
+                if (_number2 != value)
+                {
                     _number2 = value;
                     OnPropertyChanged(nameof(Number2));
                     OnPropertyChanged(nameof(Result));
+
+                }
             }
         }
 
@@ -52,14 +59,13 @@ namespace WpfApp2_Nikita
             Number2 = Math.Round(Number1 * Percent / 100);
             OnPropertyChanged(nameof(Result));
         }
-
-        public int CalculateResult()
+        public int ConvertPercent()
         {
             int x = Convert.ToInt32(_number1 - _number2);
             return x;
         }
 
-        public int Result => CalculateResult();
+        public int Result => ConvertPercent();
 
 
 
