@@ -49,7 +49,6 @@ namespace WpfApp2_Nikita
                     _number2 = value;
                     OnPropertyChanged(nameof(Number2));
                     OnPropertyChanged(nameof(Result));
-
                 }
             }
         }
@@ -66,8 +65,6 @@ namespace WpfApp2_Nikita
         }
 
         public int Result => ConvertPercent();
-
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName) =>

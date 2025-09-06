@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
-using System.Linq.Expressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -71,12 +70,12 @@ namespace WpfApp2_Nikita
                     var data = JsonConvert.DeserializeObject<RootData>(json);
 
                     Rows.Clear();
+                    RowsSell.Clear();
 
                     foreach (var row in data.NumberRows)
                     {
                         Rows.Add(row);
                     }
-
 
                     foreach (var row in data.NumberRowsSells)
                     {

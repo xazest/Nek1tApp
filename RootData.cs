@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace WpfApp2_Nikita
 {
@@ -11,7 +6,5 @@ namespace WpfApp2_Nikita
     {
         public ObservableCollection<NumberRow> NumberRows { get; set; } = new();
         public ObservableCollection<NumberRowSell> NumberRowsSells { get; set; } = new();
-
-      
     }
 }

@@ -25,25 +25,25 @@ namespace WpfApp2_Nikita
         }
 
         public double Percent
-    {
-        get => _percent;
-        set
         {
+            get => _percent;
+            set
+            {
                 _percent = value;
                 UpdateNumber2();
                 OnPropertyChanged(nameof(Percent));
                 OnPropertyChanged(nameof(Result));
+            }
         }
-    }
 
         public double Number2
         {
             get => _number2;
             set
             {
-                    _number2 = value;
-                    OnPropertyChanged(nameof(Number2));
-                    OnPropertyChanged(nameof(Result));
+                _number2 = value;
+                OnPropertyChanged(nameof(Number2));
+                OnPropertyChanged(nameof(Result));
             }
         }
 
@@ -60,8 +60,6 @@ namespace WpfApp2_Nikita
         }
 
         public int Result => CalculateResult();
-
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName) =>
